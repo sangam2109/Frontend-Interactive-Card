@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/icons/favicon-32x32.png" />
+
+    <title>Frontend Mentor | Interactive card details form</title>
+
+    <link rel="stylesheet" href="/style2.css" />
+    <script src="./assets/scripts/index.js" defer></script>
+</head>
+
+<body>
+    <main class="main">
+        <div class="card-container">
+            <!-- <img class="background" src="./assets/images/bg-main-mobile.png" /> -->
+            <div class="card-back">
+                <p class="cvc">123</p>
+            </div>
+            <div class="card-front">
+                <div class="card-logo">
+                    <img src="/images/card-logo.svg" />
+                </div>
+                <p class="card-number">1234 1234 1234 1234</p>
+                <div class="info">
+                    <p class="cardHolder-name">Nooshin Ghorbani</p>
+                    <div class="exp">
+                        <p class="month">00</p>
+                        <p>/</p>
+                        <p class="year">00</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-container">
+            <form class="form">
+                <label for="name" class="full-width">CARD HOLDER NAME <span class="star">*</span></label>
+                <input id="name" type="text" name="name" class="input-text" placeholder="e.g. Nooshin Ghorbani" />
+                <span class="error" id="name-error"></span>
+                <label for="cNumber" class="full-width">CARD NUMBER <span class="star">*</span></label>
+                <input id="cNumber" type="text" name="cNumber" class="input-text"
+                    placeholder="e.g. 1234 5678 9123 0000" />
+                <span class="error" id="card-error"></span>
+                <div class="flex-row">
+                    <div class="flex-column">
+                        <label for="month" class="fit-width">EXP. DATE (MM/YY)<span class="star">*</span></label>
+                        <div>
+                            <input id="month" name="month" type="text" class="input-text" placeholder="MM" />
+                            <input id="year" name="year" type="text" class="input-text" placeholder="YY" />
+                        </div>
+                        <span class="error" id="date-error"></span>
+                    </div>
+                    <div class="flex-column">
+                        <label for="cvc" class="fit-width">CVC<span class="star">*</span></label>
+                        <input id="cvc" name="cvc" type="text" class="input-text" placeholder="e.g. 123" />
+                        <span class="error" id="cvc-error"></span>
+                    </div>
+                </div>
+                <input type="submit" value="Confirm" class="btn" />
+            </form>
+        </div>
+        <div class="success-container hidden">
+            <div class="success">
+                <img src="./assets/icons/icon-complete.svg" />
+                <h2>THANK YOU!</h2>
+                <p>We've added your card details</p>
+                <button class="btn">Continue</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- <div class="attribution">
+      Challenge by
+      <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+        >Frontend Mentor</a
+      >. Coded by <a href="#">Your Name Here</a>.
+    </div> -->
+</body>
+
+</html>
