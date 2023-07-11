@@ -5,7 +5,7 @@ const numberInput = document.getElementById('number');
 const monthInput = document.getElementById('month');
 const yearInput = document.getElementById('year');
 const cvcInput = document.getElementById("cvc");
-const form=document.getElementById("form")
+const form = document.getElementById("form")
 
 const nameOutput = document.getElementsByClassName('name-output')[0];
 const numberOutput = document.querySelector('.number-output');
@@ -15,27 +15,27 @@ const cvcOutput = document.querySelector('.cvc-output');
 
 
 
-nameInput.addEventListener('input', function() {
+nameInput.addEventListener('input', function () {
   nameOutput.textContent = nameInput.value;
 });
-numberInput.addEventListener('input', function() {
+numberInput.addEventListener('input', function () {
   numberOutput.textContent = numberInput.value;
 });
-monthInput.addEventListener('input', function() {
+monthInput.addEventListener('input', function () {
   monthOutput.textContent = monthInput.value;
 });
-yearInput.addEventListener('input', function() {
+yearInput.addEventListener('input', function () {
   yearOutput.textContent = yearInput.value;
 });
-cvcInput.addEventListener('input', function() {
+cvcInput.addEventListener('input', function () {
   cvcOutput.textContent = cvcInput.value;
 });
 
 function ValidateForm() {
-    ValidateName();
-    ValidateNumber();
-    Validatecvc();
-    Validatedate();
+  ValidateName();
+  ValidateNumber();
+  Validatecvc();
+  Validatedate();
   if (ValidateName() && ValidateNumber() && Validatedate() && Validatecvc()) {
     console.log("all okay");
     updatecard()
@@ -44,26 +44,26 @@ function ValidateForm() {
     console.log("correct all errors");
     event.preventDefault();
   }
-    
- 
+
+
 }
-function replacepage(){
-    form.style.display="none";
-    newpage.style.display="block";
-    
-    event.preventDefault();
+function replacepage() {
+  form.style.display = "none";
+  newpage.style.display = "block";
+
+  event.preventDefault();
 }
-function replaceform(){
-    newpage.style.display="none";
-    form.style.display="block";
-    form.reset();
+function replaceform() {
+  newpage.style.display = "none";
+  form.style.display = "block";
+  form.reset();
 }
-function updatecard(){
+function updatecard() {
   nameOutput.textContent = nameInput.value;
   numberOutput.textContent = numberInput.value;
- monthOutput.textContent = monthInput.value;
- yearOutput.textContent = yearInput.value;
- cvcOutput.textContent = cvcInput.value;
+  monthOutput.textContent = monthInput.value;
+  yearOutput.textContent = yearInput.value;
+  cvcOutput.textContent = cvcInput.value;
 }
 
 function ValidateName() {
@@ -88,19 +88,21 @@ function ValidateNumber() {
   let number = document.getElementsByClassName("number-input")[0].value;
   let errorEmpty = document.getElementsByClassName("error empty")[1];
   let errorInvalid = document.getElementsByClassName("error invalid")[1];
-
- if (number.trim() === "") {
+  const cardNumberRegex = /^(\d{4}\s){3}\d{4}$/;
+  if (number.trim() === "") {
     errorEmpty.style.display = "block";
     return false;
-  } 
-  if((number.trim()).length!==16){
+  }
+  else if (!cardNumberRegex.test(number)) {
+
     errorInvalid.style.display = "block";
     return false;
   }
-    else if (isNaN(number.replace(/\s/g, ""))) {
+
+  else if (isNaN(number.replace(/\s/g, ""))) {
     errorInvalid.style.display = "block";
     return false;
-    
+
   } else {
     errorEmpty.style.display = "none";
     errorInvalid.style.display = "none";
@@ -114,14 +116,14 @@ function Validatedate() {
   let errorEmpty = document.getElementsByClassName("error empty")[2];
   let errorInvalid = document.getElementsByClassName("error invalid")[2];
 
-  if(month=="" || year==""){
-    errorEmpty.style.display="block";
+  if (month == "" || year == "") {
+    errorEmpty.style.display = "block";
     return false;
   }
-  if(!(month>0 && month<13)){
-    errorInvalid.innerHTML="Month is not in valid range";
-      errorInvalid.style.display="block";
-      return false;
+  if (!(month > 0 && month < 13)) {
+    errorInvalid.innerHTML = "Month is not in valid range";
+    errorInvalid.style.display = "block";
+    return false;
   }
   else if (isNaN(month) || isNaN(year)) {
     errorInvalid.style.display = "block";
@@ -150,13 +152,5 @@ function Validatecvc() {
     return true;
   }
 }
-function formatCardNumber() {
-  let input = document.getElementById("cardNumberInput");
-  let errorMessage = document.getElementById("errorMessage");
 
-  let formattedValue = input.value.replace(/\D/g, '').replace(/(.{4})/g, '$1 ');
-
-  input.value = formattedValue;
-  errorMessage.style.display = (formattedValue !== input.placeholder) ? 'block' : 'none';
-}
 
