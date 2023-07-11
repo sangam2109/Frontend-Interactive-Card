@@ -135,6 +135,7 @@ form .input-field label{
 .input-field.error-invalid .invalid{
     display: block;
 }
+
 form .flex-row{
     display: flex;
     align-items: flex-start;

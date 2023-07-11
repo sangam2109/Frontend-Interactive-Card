@@ -41,17 +41,18 @@
         <div class="input-field">
           <label for="number">Card Number</label>
           <input type="text" placeholder="e.g. 1234 5678 9123 0000" id="number" name="number" minlength="19"
-            maxlength="19" class="number-input">
+            maxlength="19" class="number-input" oninput="formatCardNumber()">
           <p class="error empty">Can't be blank</p>
-          <p class="error invalid">Wrong format, numbers only</p>
+          <p class="error invalid">Wrong format, 16 numbers and 3 spaces only</p>
+          <p id="errorMessage" style="color: red; display: none;">Please enter the card number in the correct format.</p>
         </div>
         <div class="flex-row">
           <div class="input-field date-container">
             <label id='date'>Exp. Date (MM/YY)</label>
             <div class="date-input">
               <input type='text' placeholder="MM" id='month' name="month" aria-labelledby='date'
-                class="date month-input" maxlength="2" >
-              <input type='text' placeholder="YY" id='year' name="year" aria-labelledby='date' class="date year-input"
+                class="date month-input" maxlength="2" minlength="2">
+              <input type='text' placeholder="YY" id='year' name="year" aria-labelledby='date' class="date year-input" minlength="2"
                 maxlength="2" >
             </div>
             <p class="error empty">Can't be blank</p>

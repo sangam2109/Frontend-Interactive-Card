@@ -92,7 +92,12 @@ function ValidateNumber() {
  if (number.trim() === "") {
     errorEmpty.style.display = "block";
     return false;
-  } else if (isNaN(number.replace(/\s/g, ""))) {
+  } 
+  if((number.trim()).length!==16){
+    errorInvalid.style.display = "block";
+    return false;
+  }
+    else if (isNaN(number.replace(/\s/g, ""))) {
     errorInvalid.style.display = "block";
     return false;
     
@@ -112,6 +117,11 @@ function Validatedate() {
   if(month=="" || year==""){
     errorEmpty.style.display="block";
     return false;
+  }
+  if(!(month>0 && month<13)){
+    errorInvalid.innerHTML="Month is not in valid range";
+      errorInvalid.style.display="block";
+      return false;
   }
   else if (isNaN(month) || isNaN(year)) {
     errorInvalid.style.display = "block";
@@ -140,3 +150,13 @@ function Validatecvc() {
     return true;
   }
 }
+function formatCardNumber() {
+  let input = document.getElementById("cardNumberInput");
+  let errorMessage = document.getElementById("errorMessage");
+
+  let formattedValue = input.value.replace(/\D/g, '').replace(/(.{4})/g, '$1 ');
+
+  input.value = formattedValue;
+  errorMessage.style.display = (formattedValue !== input.placeholder) ? 'block' : 'none';
+}
+
