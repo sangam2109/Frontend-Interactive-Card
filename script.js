@@ -88,22 +88,32 @@ function ValidateNumber() {
   let number = document.getElementsByClassName("number-input")[0].value;
   let errorEmpty = document.getElementsByClassName("error empty")[1];
   let errorInvalid = document.getElementsByClassName("error invalid")[1];
-  const cardNumberRegex = /^(\d{4}\s){3}\d{4}$/;
+
   if (number.trim() === "") {
     errorEmpty.style.display = "block";
     return false;
-  }
-  else if (!cardNumberRegex.test(number)) {
-
+  } else if (isNaN(number.replace(/\s/g, ""))) {
     errorInvalid.style.display = "block";
     return false;
-  }
-
-  else if (isNaN(number.replace(/\s/g, ""))) {
-    errorInvalid.style.display = "block";
-    return false;
-
   } else {
+    // Remove existing spaces from the number
+    const cleanedNumber = number.replace(/\s/g, "");
+
+    // Create an array to hold the formatted number
+    const formattedNumber = [];
+
+    // Loop through the cleaned number and add spaces after every four digits
+    for (let i = 0; i < cleanedNumber.length; i += 4) {
+      const chunk = cleanedNumber.substr(i, 4);
+      formattedNumber.push(chunk);
+    }
+
+    // Join the formatted number with spaces
+    const finalNumber = formattedNumber.join(" ");
+
+    // Update the input field value with the formatted number
+    document.getElementsByClassName("number-input")[0].value = finalNumber;
+
     errorEmpty.style.display = "none";
     errorInvalid.style.display = "none";
     return true;
