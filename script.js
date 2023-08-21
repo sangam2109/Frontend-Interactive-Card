@@ -92,7 +92,7 @@ function ValidateNumber() {
   if (number.trim() === "") {
     errorEmpty.style.display = "block";
     return false;
-  } else if (isNaN(number.replace(/\s/g, ""))) {
+  } else if (isNaN(number.replace(/\s/g, "")length !== 16))) {
     errorInvalid.style.display = "block";
     return false;
   } else {
@@ -156,7 +156,11 @@ function Validatecvc() {
   } else if (isNaN(cvc)) {
     errorInvalid.style.display = "block";
     return false;
-  } else {
+  } else if (!(cvc > 000 && cvc < 999)) {
+    errorInvalid.innerHTML = "Month is not in valid range";
+    errorInvalid.style.display = "block";
+    return false;
+  }else {
     errorEmpty.style.display = "none";
     errorInvalid.style.display = "none";
     return true;
